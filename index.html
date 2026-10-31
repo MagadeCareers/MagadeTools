@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b3d">
+
+<title>Magade Tools | All-in-One Online Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--navy:#101b3d;
+--blue:#4263eb;
+--cyan:#27c3d5;
+--bg:#f4f7fc;
+--text:#17213b;
+--muted:#71809e;
+--white:#fff;
+--border:#e7ecf5;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'DM Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+a{text-decoration:none;color:inherit}
+
+.topbar{
+background:#0b1430;
+color:white;
+padding:10px;
+text-align:center;
+font-size:12px;
+}
+
+.topbar span{color:#5de0e7;font-weight:800}
+
+header{
+background:white;
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.nav{
+max-width:1150px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-family:'Plus Jakarta Sans';
+font-size:20px;
+font-weight:800;
+}
+
+.logo{
+width:43px;
+height:43px;
+border-radius:13px;
+background:linear-gradient(135deg,#4263eb,#27c3d5);
+color:white;
+display:grid;
+place-items:center;
+font-size:22px;
+}
+
+.brand small{
+display:block;
+font-size:9px;
+letter-spacing:2px;
+color:#8792aa;
+}
+
+.navlinks{
+display:flex;
+gap:25px;
+font-size:13px;
+font-weight:700;
+color:#52617e;
+}
+
+.navlinks a:hover{color:var(--blue)}
+
+.navbtn{
+background:var(--navy);
+color:white;
+padding:11px 17px;
+border-radius:10px;
+font-size:12px;
+font-weight:800;
+}
+
+.hero{
+background:
+radial-gradient(circle at 85% 20%,#3858b8,transparent 30%),
+linear-gradient(115deg,#101b3d,#173d70);
+color:white;
+}
+
+.hero-inner{
+max-width:1150px;
+margin:auto;
+padding:75px 20px;
+}
+
+.badge{
+display:inline-block;
+padding:8px 13px;
+border:1px solid #ffffff40;
+border-radius:30px;
+font-size:11px;
+color:#aef5f2;
+letter-spacing:1px;
+}
+
+.hero h1{
+font-family:'Plus Jakarta Sans';
+font-size:clamp(38px,6vw,60px);
+line-height:1.15;
+margin:22px 0;
+letter-spacing:-2px;
+}
+
+.hero h1 span{
+background:linear-gradient(90deg,#69e4e0,#9ab5ff);
+background-clip:text;
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+color:#c2cce5;
+font-size:15px;
+line-height:1.8;
+max-width:550px;
+margin-bottom:25px;
+}
+
+.searchbox{
+background:white;
+padding:7px;
+border-radius:13px;
+display:flex;
+max-width:560px;
+}
+
+.searchbox input{
+flex:1;
+min-width:0;
+border:0;
+outline:0;
+padding:12px;
+font-size:14px;
+}
+
+.searchbox button{
+border:0;
+background:linear-gradient(135deg,#4263eb,#22bccc);
+color:white;
+padding:12px 20px;
+border-radius:9px;
+font-weight:800;
+}
+
+.hero-note{
+margin-top:15px;
+font-size:11px;
+color:#b9c9e5;
+}
+
+.stats{
+max-width:1150px;
+margin:auto;
+padding:20px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.stat{
+background:white;
+padding:20px;
+border:1px solid var(--border);
+border-radius:13px;
+}
+
+.stat b{
+font-family:'Plus Jakarta Sans';
+font-size:17px;
+display:block;
+}
+
+.stat small{
+color:var(--muted);
+font-size:11px;
+}
+
+main{
+max-width:1150px;
+margin:auto;
+padding:45px 20px;
+}
+
+.section-head{margin-bottom:25px}
+
+.kicker{
+font-size:10px;
+color:var(--blue);
+font-weight:800;
+letter-spacing:2px;
+}
+
+.section-head h2{
+font-family:'Plus Jakarta Sans';
+font-size:27px;
+margin:9px 0;
+}
+
+.section-head p{
+font-size:13px;
+color:var(--muted);
+}
+
+.categories{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:25px;
+}
+
+.chip{
+padding:10px 17px;
+border:1px solid var(--border);
+background:white;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+cursor:pointer;
+}
+
+.chip.active,.chip:hover{
+background:var(--navy);
+color:white;
+}
+
+.tool-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+}
+
+.tool{
+background:white;
+border:1px solid var(--border);
+border-radius:16px;
+padding:20px;
+min-height:175px;
+cursor:pointer;
+transition:.25s;
+}
+
+.tool:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px #17265315;
+border-color:#bdcaff;
+}
+
+.tool-icon{
+width:45px;
+height:45px;
+border-radius:13px;
+display:grid;
+place-items:center;
+font-size:22px;
+margin-bottom:15px;
+}
+
+.tool h3{
+font-family:'Plus Jakarta Sans';
+font-size:14px;
+margin-bottom:8px;
+}
+
+.tool p{
+font-size:11px;
+color:var(--muted);
+line-height:1.6;
+}
+
+.tag{
+display:inline-block;
+margin-top:12px;
+padding:5px 8px;
+background:#eef2ff;
+color:#4263eb;
+font-size:9px;
+font-weight:800;
+border-radius:5px;
+}
+
+.blue{background:#edf1ff}
+.green{background:#e8faf3}
+.orange{background:#fff3e7}
+.pink{background:#fff0f5}
+.cyan{background:#e7faff}
+.purple{background:#f2edff}
+.yellow{background:#fff9df}
+
+.promo{
+margin-top:50px;
+padding:35px;
+border-radius:18px;
+background:linear-gradient(110deg,#172653,#263f83);
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+}
+
+.promo h2{
+font-family:'Plus Jakarta Sans';
+font-size:23px;
+margin-bottom:10px;
+}
+
+.promo p{
+font-size:12px;
+color:#c5d0ea;
+}
+
+.promo a{
+background:white;
+color:var(--navy);
+padding:13px 18px;
+border-radius:10px;
+font-size:12px;
+font-weight:800;
+white-space:nowrap;
+}
+
+.why{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:25px;
+}
+
+.why article{
+background:white;
+padding:22px;
+border:1px solid var(--border);
+border-radius:14px;
+}
+
+.why h3{margin:12px 0 8px;font-size:14px}
+
+.why p{
+font-size:11px;
+color:var(--muted);
+line-height:1.7;
+}
+
+footer{
+background:#0b1430;
+color:white;
+padding:35px 20px;
+text-align:center;
+}
+
+footer p{
+color:#aab8d4;
+font-size:12px;
+margin-top:10px;
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#07112dcc;
+z-index:100;
+padding:15px;
+align-items:center;
+justify-content:center;
+}
+
+.modal.open{display:flex}
+
+.modal-box{
+background:white;
+width:100%;
+max-width:450px;
+padding:25px;
+border-radius:17px;
+max-height:90vh;
+overflow:auto;
+}
+
+.modal-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.modal-head button{
+border:0;
+padding:7px 12px;
+border-radius:8px;
+}
+
+.field{margin:15px 0}
+
+.field label{
+display:block;
+font-size:12px;
+font-weight:800;
+margin-bottom:7px;
+}
+
+.field input,.field textarea{
+width:100%;
+padding:12px;
+border:1px solid var(--border);
+border-radius:9px;
+}
+
+.action{
+background:var(--blue);
+color:white;
+padding:12px 18px;
+border:0;
+border-radius:9px;
+font-weight:800;
+cursor:pointer;
+}
+
+.result{
+display:none;
+background:#eef8ff;
+padding:13px;
+border-radius:9px;
+margin-top:15px;
+font-size:13px;
+}
+
+@media(max-width:800px){
+.tool-grid{grid-template-columns:repeat(2,1fr)}
+.stats{grid-template-columns:repeat(2,1fr)}
+.navlinks{gap:12px}
+}
+
+@media(max-width:550px){
+.navlinks{display:none}
+.navbtn{display:none}
+.hero-inner{padding:55px 20px}
+.hero h1{font-size:40px}
+.tool-grid{gap:10px}
+.tool{padding:15px;min-height:170px}
+.tool h3{font-size:12px}
+.stats{padding:12px}
+.stat{padding:13px}
+.promo{display:block;padding:25px}
+.promo a{display:inline-block;margin-top:18px}
+.why{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+<span>✦ 100% FREE TOOLS</span> · Simple, Fast & Secure
+</div>
+
+<header>
+<nav class="nav">
+
+<a href="#" class="brand">
+<div class="logo">M</div>
+<div>
+MAGADE TOOLS
+<small>SMART DIGITAL UTILITIES</small>
+</div>
+</a>
+
+<div class="navlinks">
+<a href="#tools">All Tools</a>
+<a href="#categories">Categories</a>
+<a href="#why">About Us</a>
+<a href="https://magadecareers.github.io/MagadeCareers/">Magade Careers ↗</a>
+</div>
+
+<a href="#tools" class="navbtn">Explore Tools →</a>
+
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-inner">
+
+<div class="badge">✦ YOUR EVERYDAY DIGITAL TOOLKIT</div>
+
+<h1>
+Powerful Tools.<br>
+<span>Made Simple.</span>
+</h1>
+
+<p>
+Resize images, manage documents, calculate instantly
+and complete your everyday digital tasks — all in one place.
+</p>
+
+<div class="searchbox">
+<input id="search" placeholder="Search for a tool...">
+<button onclick="searchTools()">Search ↗</button>
+</div>
+
+<div class="hero-note">
+✓ Free to use &nbsp; ✓ No sign-up required &nbsp; ✓ Mobile friendly
+</div>
+
+</div>
+</section>
+
+<div class="stats">
+<div class="stat">🧰 <b>All-in-One</b><small>Useful tools in one place</small></div>
+<div class="stat">⚡ <b>Quick & Easy</b><small>Simple experience</small></div>
+<div class="stat">🔒 <b>Privacy First</b><small>Browser-based tools</small></div>
+<div class="stat">📱 <b>Responsive</b><small>Mobile & Desktop</small></div>
+</div>
+
+<main>
+
+<section id="tools">
+
+<div class="section-head">
+<div class="kicker">EXPLORE THE COLLECTION</div>
+<h2>Find the Right Tool for the Job</h2>
+<p>Pick a tool and make your work easier.</p>
+</div>
+
+<div class="categories" id="categories">
+<button class="chip active" onclick="filterTools('all',this)">All Tools</button>
+<button class="chip" onclick="filterTools('image',this)">Image Tools</button>
+<button class="chip" onclick="filterTools('pdf',this)">PDF Tools</button>
+<button class="chip" onclick="filterTools('calculator',this)">Calculators</button>
+<button class="chip" onclick="filterTools('text',this)">Text Tools</button>
+<button class="chip" onclick="filterTools('other',this)">Other Tools</button>
+</div>
+
+<div class="tool-grid" id="toolGrid">
+
+<div class="tool" data-category="image" onclick="openTool('Image Compressor')">
+<div class="tool-icon blue">🗜️</div>
+<h3>Image Compressor</h3>
+<p>Reduce image file size easily.</p>
+<span class="tag">IMAGE TOOL</span>
+</div>
+
+<div class="tool" data-category="image" onclick="openTool('Image Resizer')">
+<div class="tool-icon cyan">📐</div>
+<h3>Image Resizer</h3>
+<p>Change image width and height.</p>
+<span class="tag">IMAGE TOOL</span>
+</div>
+
+<div class="tool" data-category="image" onclick="openTool('Image Cropper')">
+<div class="tool-icon pink">✂️</div>
+<h3>Image Cropper</h3>
+<p>Crop images to your desired size.</p>
+<span class="tag">COMING SOON</span>
+</div>
+
+<div class="tool" data-category="pdf" onclick="openTool('JPG to PDF')">
+<div class="tool-icon orange">📄</div>
+<h3>JPG to PDF</h3>
+<p>Convert images into PDF documents.</p>
+<span class="tag">COMING SOON</span>
+</div>
+
+<div class="tool" data-category="pdf" onclick="openTool('PDF to JPG')">
+<div class="tool-icon purple">🗂️</div>
+<h3>PDF to JPG</h3>
+<p>Convert PDF pages into images.</p>
+<span class="tag">COMING SOON</span>
+</div>
+
+<div class="tool" data-category="calculator" onclick="openTool('Age Calculator')">
+<div class="tool-icon green">🎂</div>
+<h3>Age Calculator</h3>
+<p>Calculate your exact age.</p>
+<span class="tag">QUICK TOOL</span>
+</div>
+
+<div class="tool" data-category="calculator" onclick="openTool('Percentage Calculator')">
+<div class="tool-icon yellow">％</div>
+<h3>Percentage Calculator</h3>
+<p>Calculate marks and percentages.</p>
+<span class="tag">QUICK TOOL</span>
+</div>
+
+<div class="tool" data-category="calculator" onclick="openTool('BMI Calculator')">
+<div class="tool-icon blue">⚖️</div>
+<h3>BMI Calculator</h3>
+<p>Calculate Body Mass Index.</p>
+<span class="tag">QUICK TOOL</span>
+</div>
+
+<div class="tool" data-category="text" onclick="openTool('Word Counter')">
+<div class="tool-icon cyan">🔤</div>
+<h3>Word Counter</h3>
+<p>Count words and characters.</p>
+<span class="tag">QUICK TOOL</span>
+</div>
+
+<div class="tool" data-category="text" onclick="openTool('Case Converter')">
+<div class="tool-icon pink">Aa</div>
+<h3>Case Converter</h3>
+<p>Convert text to uppercase or lowercase.</p>
+<span class="tag">QUICK TOOL</span>
+</div>
+
+<div class="tool" data-category="other" onclick="openTool('QR Code Generator')">
+<div class="tool-icon purple">▦</div>
+<h3>QR Code Generator</h3>
+<p>Create QR codes from text or links.</p>
+<span class="tag">COMING SOON</span>
+</div>
+
+<div class="tool" data-category="other" onclick="openTool('Typing Speed Test')">
+<div class="tool-icon green">⌨️</div>
+<h3>Typing Speed Test</h3>
+<p>Practice and check typing speed.</p>
+<span class="tag">COMING SOON</span>
+</div>
+
+</div>
+</section>
+
+<section class="promo">
+<div>
+<h2>Explore Magade Careers</h2>
+<p>Job updates, exam resources and career guidance.</p>
+</div>
+<a href="https://magadecareers.github.io/MagadeCareers/">
+Visit Magade Careers ↗
+</a>
+</section>
+
+<section id="why" style="margin-top:50px">
+
+<div class="section-head">
+<div class="kicker">DESIGNED AROUND YOU</div>
+<h2>Why Use Magade Tools?</h2>
+<p>Less hassle. More productivity.</p>
+</div>
+
+<div class="why">
+<article>
+⚡
+<h3>Simple by Design</h3>
+<p>Easy layouts and simple steps to complete everyday tasks.</p>
+</article>
+
+<article>
+🔐
+<h3>Privacy Conscious</h3>
+<p>Selected tools process files directly in your browser.</p>
+</article>
+
+<article>
+📱
+<h3>Made for Every Screen</h3>
+<p>Works across mobile phones, tablets and computers.</p>
+</article>
+</div>
+
+</section>
+</main>
+
+<footer>
+<h2>MAGADE TOOLS</h2>
+<p>All Your Digital Tools in One Place.</p>
+<p>© <span id="year"></span> Magade Tools. All rights reserved.</p>
+</footer>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<div class="modal-head">
+<h3 id="modalTitle">Tool</h3>
+<button onclick="closeModal()">✕</button>
+</div>
+<div id="modalBody"></div>
+</div>
+</div>
+
+<script>
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+function filterTools(category,button){
+
+document.querySelectorAll(".chip").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+
+document.querySelectorAll(".tool").forEach(tool=>{
+tool.style.display=(category==="all" || tool.dataset.category===category)?"block":"none";
+});
+
+document.getElementById("search").value="";
+}
+
+function searchTools(){
+
+let query=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll(".tool").forEach(tool=>{
+tool.style.display=tool.innerText.toLowerCase().includes(query)?"block":"none";
+});
+
+}
+
+function closeModal(){
+document.getElementById("modal").classList.remove("open");
+}
+
+function showResult(message){
+let result=document.getElementById("result");
+result.style.display="block";
+result.innerText=message;
+}
+
+function openTool(name){
+
+let body=document.getElementById("modalBody");
+
+document.getElementById("modalTitle").innerText=name;
+
+if(name==="Age Calculator"){
+
+body.innerHTML=`
+<div class="field">
+<label>Date of Birth</label>
+<input type="date" id="dob">
+</div>
+<button class="action" onclick="calculateAge()">Calculate Age</button>
+<div class="result" id="result"></div>`;
+
+}
+
+else if(name==="Percentage Calculator"){
+
+body.innerHTML=`
+<div class="field">
+<label>Obtained Marks</label>
+<input type="number" id="marks">
+</div>
+<div class="field">
+<label>Total Marks</label>
+<input type="number" id="total">
+</div>
+<button class="action" onclick="calculatePercentage()">Calculate</button>
+<div class="result" id="result"></div>`;
+
+}
+
+else if(name==="BMI Calculator"){
+
+body.innerHTML=`
+<div class="field">
+<label>Weight (kg)</label>
+<input type="number" id="weight">
+</div>
+<div class="field">
+<label>Height (cm)</label>
+<input type="number" id="height">
+</div>
+<button class="action" onclick="calculateBMI()">Calculate BMI</button>
+<div class="result" id="result"></div>`;
+
+}
+
+else if(name==="Word Counter"){
+
+body.innerHTML=`
+<div class="field">
+<label>Enter Your Text</label>
+<textarea id="text" rows="6" oninput="countWords()"></textarea>
+</div>
+<div class="result" id="result" style="display:block">Words: 0 | Characters: 0</div>`;
+
+}
+
+else if(name==="Case Converter"){
+
+body.innerHTML=`
+<div class="field">
+<label>Enter Your Text</label>
+<textarea id="text" rows="5"></textarea>
+</div>
+<button class="action" onclick="convertText('upper')">UPPERCASE</button>
+<button class="action" onclick="convertText('lower')">lowercase</button>
+<div class="result" id="result"></div>`;
+
+}
+
+else if(name==="Image Compressor" || name==="Image Resizer"){
+
+body.innerHTML=`
+<div class="field">
+<label>Select Image</label>
+<input type="file" id="image" accept="image/*">
+</div>
+<div id="imageOptions"></div>`;
+
+document.getElementById("image").onchange=function(){
+
+let file=this.files[0];
+if(!file)return;
+
+let img=new Image();
+img.onload=function(){
+
+document.getElementById("imageOptions").innerHTML=`
+<p>Original dimensions: ${img.width} × ${img.height}</p>
+${name==="Image Resizer"?`
+<div class="field"><label>Width</label><input id="iw" type="number" value="${img.width}"></div>
+<div class="field"><label>Height</label><input id="ih" type="number" value="${img.height}"></div>
+`:`<div class="field"><label>Quality (%)</label><input id="quality" type="range" min="10" max="100" value="75"></div>`}
+<button class="action" onclick="processImage('${name}')">Process & Download</button>
+<div class="result" id="result"></div>`;
+
+window.selectedImage=img;
+window.selectedFile=file;
+
+};
+
+img.src=URL.createObjectURL(file);
+
+};
+
+}
+
+else{
+
+body.innerHTML=`
+<p style="line-height:1.7;color:#71809e">
+This tool is coming soon. We are working to bring this feature to Magade Tools.
+</p>`;
+
+}
+
+document.getElementById("modal").classList.add("open");
+
+}
+
+function calculateAge(){
+
+let value=document.getElementById("dob").value;
+
+if(!value)return showResult("Please select your date of birth.");
+
+let birth=new Date(value+"T00:00:00");
+let today=new Date();
+
+if(birth>today)return showResult("Invalid date of birth.");
+
+let age=today.getFullYear()-birth.getFullYear();
+
+let month=today.getMonth()-birth.getMonth();
+
+if(month<0 || (month===0 && today.getDate()<birth.getDate()))age--;
+
+showResult("Your age is "+age+" years.");
+
+}
+
+function calculatePercentage(){
+
+let marks=Number(document.getElementById("marks").value);
+let total=Number(document.getElementById("total").value);
+
+if(total<=0 || marks<0 || marks>total)
+return showResult("Please enter valid marks.");
+
+showResult("Your Percentage: "+(marks/total*100).toFixed(2)+"%");
+
+}
+
+function calculateBMI(){
+
+let weight=Number(document.getElementById("weight").value);
+let height=Number(document.getElementById("height").value)/100;
+
+if(weight<=0 || height<=0)
+return showResult("Enter valid weight and height.");
+
+let bmi=weight/(height*height);
+
+showResult("Your BMI: "+bmi.toFixed(1));
+
+}
+
+function countWords(){
+
+let text=document.getElementById("text").value;
+let words=text.trim()?text.trim().split(/\s+/).length:0;
+
+document.getElementById("result").innerText=
+"Words: "+words+
+" | Characters: "+text.length+
+" | Without spaces: "+text.replace(/\s/g,"").length;
+
+}
+
+function convertText(type){
+
+let field=document.getElementById("text");
+
+field.value=type==="upper"?
+field.value.toUpperCase():
+field.value.toLowerCase();
+
+}
+
+function processImage(name){
+
+let img=window.selectedImage;
+let file=window.selectedFile;
+
+let width=name==="Image Resizer"?Number(document.getElementById("iw").value):img.width;
+let height=name==="Image Resizer"?Number(document.getElementById("ih").value):img.height;
+
+if(width<=0 || height<=0)return showResult("Enter valid dimensions.");
+
+let canvas=document.createElement("canvas");
+canvas.width=width;
+canvas.height=height;
+
+canvas.getContext("2d").drawImage(img,0,0,width,height);
+
+let quality=name==="Image Compressor"?
+Number(document.getElementById("quality").value)/100:0.92;
+
+canvas.toBlob(function(blob){
+
+if(!blob)return showResult("Unable to process this image.");
+
+let link=document.createElement("a");
+link.href=URL.createObjectURL(blob);
+link.download="magade-"+name.toLowerCase().replace(" ","-")+".jpg";
+link.click();
+
+showResult("Image processed successfully! New size: "+(blob.size/1024).toFixed(1)+" KB");
+
+},"image/jpeg",quality);
+
+}
+
+</script>
+
+</body>
+  </html>
